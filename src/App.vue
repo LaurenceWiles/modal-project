@@ -1,6 +1,10 @@
 <template>
   <h1>{{ title }}</h1>
-  <Modal :header="header" :text="text" theme="sale" />
+  <p>Welcome...</p>
+  <div v-if="showModal">
+    <Modal :header="header" :text="text" theme="sale" @close="toggleModal" />
+  </div>
+  <button @click="toggleModal">open modal</button>
 </template>
 
 <script>
@@ -14,13 +18,12 @@ export default {
       title: "My First View App",
       header: "Sign up for the giveaway",
       text: "Grab your ninja swag for half price",
+      showModal: false,
     };
   },
   methods: {
-    handleClick() {
-      console.log(this.$refs.name);
-      this.$refs.name.classList.add("active");
-      this.$refs.name.focus();
+    toggleModal() {
+      this.showModal = !this.showModal;
     },
   },
 };
